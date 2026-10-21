@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slot-Gt-Tc Entry Form — Bold Split</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            --grad: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #db2777 100%);
+            --grad-2: linear-gradient(90deg, #6366f1, #a855f7, #ec4899);
+            --ink: #1e293b;
+            --muted: #64748b;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: var(--ink);
+            background: #eef1f8;
+        }
+
+        .shell {
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            width: 100%;
+            max-width: 860px;
+            background: #fff;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 40px 80px -40px rgba(30, 41, 59, .45);
+        }
+
+        /* LEFT gradient brand panel */
+        .panel {
+            position: relative;
+            background: linear-gradient(165deg, #4338ca 0%, #6366f1 45%, #8b5cf6 75%, #a855f7 100%);
+            color: #fff;
+            padding: 42px 34px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 26px;
+            overflow: hidden;
+        }
+        /* soft glow orbs */
+        .glow { position: absolute; border-radius: 50%; pointer-events: none; }
+        .glow-a {
+            width: 280px; height: 280px;
+            top: -110px; right: -110px;
+            background: radial-gradient(circle, rgba(255,255,255,.22) 0%, rgba(255,255,255,0) 70%);
+            animation: float 9s ease-in-out infinite;
+        }
+        .glow-b {
+            width: 240px; height: 240px;
+            bottom: -90px; left: -90px;
+            background: radial-gradient(circle, rgba(236,72,153,.42) 0%, rgba(236,72,153,0) 70%);
+            animation: float 11s ease-in-out infinite reverse;
+        }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-14px, 14px); }
+        }
+        /* subtle dot texture that fades downward */
+        .dots {
+            position: absolute; inset: 0;
+            background-image: radial-gradient(rgba(255,255,255,.16) 1px, transparent 1px);
+            background-size: 18px 18px;
+            -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,.85), transparent 65%);
+            mask-image: linear-gradient(180deg, rgba(0,0,0,.85), transparent 65%);
+            pointer-events: none;
+        }
+
+        .panel .top { position: relative; z-index: 1; }
+
+        /* Logo + headline on the SAME line */
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .logo {
+            width: 70px; height: 58px;
+            flex: 0 0 auto;
+            border-radius: 8px;
+            background: linear-gradient(145deg, rgba(14, 74, 70, 0.62) 0%, rgba(8, 44, 42, 0.72) 100%);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            padding: 8px;
+            box-shadow: 0 16px 32px -14px rgba(0,0,0,.6), inset 0 0 0 1.5px rgba(240, 208, 112, .5);
+        }
+        .logo img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
+        .panel h1 { font-size: 1.7rem; font-weight: 800; line-height: 1.05; letter-spacing: -.4px; }
+
+        /* Subtitle on the NEXT line — uppercase micro-label */
+        .subtitle {
+            margin-top: 7px;
+            font-size: .67rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.7px;
+            color: rgba(255,255,255,.72);
+        }
+        .subtitle .dash { color: #f9a8d4; padding: 0 3px; }
+
+        .panel .top .desc {
+            margin-top: 20px;
+            max-width: 30ch;
+            font-size: .88rem;
+            color: rgba(255,255,255,.82);
+            font-weight: 500;
+            line-height: 1.65;
+        }
+
+        /* frosted glass feature pills */
+        .features { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 10px; }
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 11px 13px;
+            border-radius: 14px;
+            background: rgba(255,255,255,.09);
+            border: 1px solid rgba(255,255,255,.14);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            font-size: .82rem;
+            font-weight: 600;
+            color: rgba(255,255,255,.95);
+            transition: transform .2s ease, background .2s ease;
+        }
+        .feature:hover { transform: translateX(4px); background: rgba(255,255,255,.15); }
+        .feature i {
+            width: 30px; height: 30px; flex: 0 0 auto;
+            display: grid; place-items: center;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(255,255,255,.3), rgba(255,255,255,.12));
+            font-size: .76rem;
+        }
+
+        /* footer trust note */
+        .panel-foot {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: .74rem;
+            font-weight: 600;
+            color: rgba(255,255,255,.62);
+        }
+        .panel-foot i { color: #86efac; font-size: .72rem; }
+
+        /* RIGHT form side */
+        .form-side { padding: 40px 38px; }
+        .form-side h2 { font-size: 1.2rem; font-weight: 800; }
+        .form-side .sub { font-size: .82rem; color: var(--muted); margin-top: 4px; margin-bottom: 22px; font-weight: 500; }
+
+        form { display: flex; flex-direction: column; gap: 15px; }
+        .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .field { position: relative; }
+
+        .field input,
+        .field select,
+        .field textarea {
+            width: 100%;
+            font-family: inherit;
+            font-size: .9rem;
+            color: var(--ink);
+            background: #f5f7fb;
+            border: 1.5px solid #e5e9f2;
+            border-radius: 13px;
+            padding: 20px 14px 8px;
+            outline: none;
+            transition: border-color .2s, box-shadow .2s, background .2s;
+        }
+        .field textarea { min-height: 86px; resize: none; }
+        .field select { appearance: none; cursor: pointer; }
+        .field input::placeholder, .field textarea::placeholder { color: transparent; }
+
+        .field label {
+            position: absolute;
+            left: 14px;
+            top: 15px;
+            font-size: .86rem;
+            color: var(--muted);
+            pointer-events: none;
+            transition: all .2s ease;
+        }
+        .field input:focus + label,
+        .field input:not(:placeholder-shown) + label,
+        .field textarea:focus + label,
+        .field textarea:not(:placeholder-shown) + label,
+        .field select:focus + label,
+        .field select.filled + label {
+            top: 6px;
+            font-size: .65rem;
+            font-weight: 700;
+            letter-spacing: .6px;
+            text-transform: uppercase;
+            color: #7c3aed;
+        }
+
+        .field input:focus,
+        .field select:focus,
+        .field textarea:focus {
+            background: #fff;
+            border-color: #c4b5fd;
+            box-shadow: 0 0 0 4px rgba(124, 58, 237, .13);
+        }
+
+        .field .caret { position: absolute; right: 14px; top: 18px; font-size: .7rem; color: #7c3aed; pointer-events: none; }
+
+        /* Select Platform field: show ONLY the logo, no platform name text */
+        .select-field select { color: transparent; }                 /* hide selected text */
+        .select-field select option { color: var(--ink); background-color: #fff; } /* keep popup list readable */
+        .select-field label { left: 14px; }
+        .platform-logo {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 58px;
+            height: 36px;
+            object-fit: contain;
+            background: #12151f;           /* blackish background */
+            border-radius: 6px;
+            padding: 2px 4px;
+            z-index: 2;
+            display: none;
+            pointer-events: none;
+        }
+        .platform-logo.show { display: block; animation: pop .25s ease; }
+
+        /* clickable Visit Platform link */
+        a.visit-link {
+            display: block;
+            width: 100%;
+            font-size: .9rem;
+            font-weight: 600;
+            color: var(--ink);
+            background: #f5f7fb;
+            border: 1.5px solid #e5e9f2;
+            border-radius: 13px;
+            padding: 20px 36px 8px 14px;
+            text-decoration: none;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            position: relative;
+            transition: border-color .2s, box-shadow .2s, background .2s;
+        }
+        a.visit-link.disabled { color: #94a3b8; font-weight: 500; cursor: not-allowed; pointer-events: none; }
+        a.visit-link.filled { cursor: pointer; }
+        a.visit-link.filled:hover {
+            background: #fff;
+            border-color: #c4b5fd;
+            box-shadow: 0 0 0 4px rgba(124, 58, 237, .13);
+        }
+        a.visit-link .open-icon {
+            position: absolute;
+            right: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: .72rem;
+            color: #7c3aed;
+        }
+        a.visit-link.filled + label,
+        a.visit-link:focus + label {
+            top: 6px;
+            font-size: .65rem;
+            font-weight: 700;
+            letter-spacing: .6px;
+            text-transform: uppercase;
+            color: #7c3aed;
+        }
+
+        button[type="submit"] {
+            margin-top: 4px;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: .98rem;
+            font-weight: 700;
+            color: #fff;
+            padding: 15px;
+            border-radius: 13px;
+            background: var(--grad-2);
+            background-size: 200% auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 16px 32px -14px rgba(124, 58, 237, .95);
+            transition: background-position .45s, transform .15s, box-shadow .3s;
+        }
+        button[type="submit"]:hover {
+            background-position: right center;
+            transform: translateY(-2px);
+            box-shadow: 0 22px 40px -16px rgba(219, 39, 119, .95);
+        }
+        button[type="submit"]:active { transform: translateY(0); }
+        button[type="submit"]:disabled { opacity: .7; cursor: wait; }
+
+        .alert {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 14px;
+            border-radius: 13px;
+            font-size: .84rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            animation: pop .35s ease;
+        }
+        .alert.ok  { background: #ecfdf5; border: 1px solid #a7f3d0; color: #047857; }
+        .alert.err { background: #fff1f2; border: 1px solid #fecdd3; color: #be123c; }
+        @keyframes pop { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+
+        @media (max-width: 760px) {
+            .shell { grid-template-columns: 1fr; max-width: 460px; }
+            .panel { padding: 30px 26px; gap: 0; }
+            .features, .panel-foot { display: none; }
+            .brand { gap: 12px; }
+            .logo { width: 50px; height: 50px; border-radius: 15px; padding: 7px; }
+            .panel h1 { font-size: 1.35rem; }
+            .panel .top .desc { margin-top: 14px; }
+            .form-side { padding: 28px 24px 32px; }
+        }
+        @media (max-width: 420px) {
+            .row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="shell">
+        <aside class="panel">
+            <div class="glow glow-a"></div>
+            <div class="glow glow-b"></div>
+            <div class="dots"></div>
+            <div class="top">
+                <div class="brand">
+                    <div class="logo">
+                        <img src="https://ik.imagekit.io/kpx40qv3r/slot_gt_tc%20logo.png" alt="Slot-Gt-Tc Logo">
+                    </div>
+                    <div class="brand-text">
+                        <h1>Slot-Gt-Tc</h1>
+                        <p class="subtitle">Entry By<span class="dash">—</span>User Name</p>
+                    </div>
+                </div>
+                <p class="desc">Keep all your platform credentials organized and accessible in one secure place.</p>
+            </div>
+            <div class="features">
+                <div class="feature"><i class="fas fa-bolt"></i><span>Quick &amp; easy data entry</span></div>
+                <div class="feature"><i class="fas fa-shield-halved"></i><span>Organized &amp; secure records</span></div>
+                <div class="feature"><i class="fas fa-sync"></i><span>Synced to your sheet instantly</span></div>
+            </div>
+            <div class="panel-foot"><i class="fas fa-lock"></i> Your data stays private &amp; encrypted</div>
+        </aside>
+
+        <main class="form-side">
+            <h2>Add New Entry</h2>
+            <p class="sub">Fill in the details below to save a new record</p>
+
+            <div id="alertBox"></div>
+
+            <form id="entryForm" onsubmit="handleFormSubmit(event)">
+                <div class="row">
+                    <div class="field select-field">
+                        <img id="platformLogo" class="platform-logo" alt="Platform logo">
+                        <select id="platformSelect" onchange="onPlatformChange(this)" required>
+                            <option value="" disabled selected></option>
+                        </select>
+                        <label>Select Platform</label>
+                        <i class="fas fa-chevron-down caret"></i>
+                    </div>
+                    <div class="field readonly">
+                        <a id="urlInput" class="visit-link disabled" href="#" target="_blank" rel="noopener"><span class="txt"></span><i class="fas fa-arrow-up-right-from-square open-icon"></i></a>
+                        <label>Visit Platform</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="field">
+                        <input type="text" id="usernameInput" placeholder="username" required>
+                        <label>Username</label>
+                    </div>
+                    <div class="field">
+                        <input type="text" id="motherAccountInput" placeholder="mother account">
+                        <label>Mother Account</label>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <textarea id="notesInput" placeholder="notes"></textarea>
+                    <label>Special Notes</label>
+                </div>
+
+                <button type="submit" id="submitBtn">
+                    <i class="fas fa-check-circle"></i><span>Save Entry</span>
+                </button>
+            </form>
+        </main>
+    </div>
+
+<script>
+    let platformMap = {};
+    let logoMap = {};
+
+    /* Platform list from Entryform.xlsx (A = Platforms, B = Logo url, C = Visit Platform) */
+    const PLATFORMS = [
+        { name: "1111bet.win",    url: "http://www.1111bet23.com",        logo: "https://ik.imagekit.io/mdbipgb/99selogo/1111.png" },
+        { name: "1333bet.ai",     url: "http://www.1333bet88.com",        logo: "https://ik.imagekit.io/mdbipgb/99selogo/1333.png" },
+        { name: "1777bet.com",    url: "http://www.1777bet16.com",        logo: "https://ik.imagekit.io/mdbipgb/99selogo/1777.png" },
+        { name: "2222bet.net",    url: "http://www.2222bet18.com",        logo: "https://ik.imagekit.io/mdbipgb/99selogo/2222.png" },
+        { name: "2777bet.org",    url: "http://www.2777bet77.com",        logo: "https://ik.imagekit.io/mdbipgb/99selogo/2777.png" },
+        { name: "299bet.win",     url: "https://www.299bet13.com",        logo: "https://ik.imagekit.io/mdbipgb/99selogo/299.png" },
+        { name: "3333bet.ai",     url: "http://www.3999bet9.com",         logo: "https://ik.imagekit.io/mdbipgb/99selogo/3333.png" },
+        { name: "399bet.com",     url: "http://www.399bet16.com",         logo: "https://ik.imagekit.io/mdbipgb/99selogo/399.png" },
+        { name: "39999bet.net",   url: "http://www.4777bet88.com",        logo: "https://ik.imagekit.io/mdbipgb/99selogo/39999.png" },
+        { name: "4777bet.win",    url: "http://www.499bet14.com",         logo: "https://ik.imagekit.io/mdbipgb/99selogo/4777.png" },
+        { name: "499bet.org",     url: "http://www.5777bet66.com",        logo: "https://ik.imagekit.io/mdbipgb/99selogo/499.png" },
+        { name: "5777bet.ai",     url: "http://www.5666bet8.com",         logo: "https://ik.imagekit.io/mdbipgb/99selogo/5777.png" },
+        { name: "5666bet.com",    url: "http://www.6777bet44.com",        logo: "https://ik.imagekit.io/mdbipgb/99selogo/5666.png" },
+        { name: "6777bet.net",    url: "http://www.786bet9.com",          logo: "https://ik.imagekit.io/mdbipgb/99selogo/6777.png" },
+        { name: "786bet.win",     url: "http://www.7000bet55.com",        logo: "https://ik.imagekit.io/mdbipgb/99selogo/786.png" },
+        { name: "7000bet.ai",     url: "http://www.7555bet7.com",         logo: "https://ik.imagekit.io/mdbipgb/99selogo/7000.png" },
+        { name: "7555bet.org",    url: "http://www.8777bet88.com",        logo: "https://ik.imagekit.io/mdbipgb/99selogo/7555.png" },
+        { name: "8777bet.com",    url: "http://www.8999bet2.com",         logo: "https://ik.imagekit.io/mdbipgb/99selogo/8777.png" },
+        { name: "8999bet.net",    url: "http://www.9777bet88.com",        logo: "https://ik.imagekit.io/mdbipgb/99selogo/8999.png" },
+        { name: "9777bet.win",    url: "http://www.bk66630.com",          logo: "https://ik.imagekit.io/mdbipgb/99selogo/9777.png" },
+        { name: "Bk66bet.ai",     url: "http://www.bk9929.com",           logo: "https://ik.imagekit.io/mdbipgb/99selogo/Bk66.png" },
+        { name: "Bk99bet.com",    url: "http://www.k77775.com",           logo: "https://ik.imagekit.io/mdbipgb/99selogo/Bk99.png" },
+        { name: "K7777bet.net",   url: "http://www.qq77728.com",          logo: "https://ik.imagekit.io/mdbipgb/99selogo/K7777.png" },
+        { name: "Qq777bet.win",   url: "http://www.xx9990.com",           logo: "https://ik.imagekit.io/mdbipgb/99selogo/Qq777.png" },
+        { name: "Xx999bet.org",   url: "https://superbaji.me",            logo: "https://ik.imagekit.io/mdbipgb/99selogo/Xx999.png" },
+        { name: "Superbaji",      url: "https://heybaji.online",          logo: "https://ik.imagekit.io/mdbipgb/99selogo/Superbaji.png" },
+        { name: "Hey_baji",       url: "https://cpc88.vip",               logo: "https://ik.imagekit.io/mdbipgb/99selogo/Hey_baji.png" },
+        { name: "Cpc_88",         url: "https://bdvegas.online",          logo: "https://ik.imagekit.io/mdbipgb/99selogo/Cpc_88.png" },
+        { name: "Bd_Vegus",       url: "https://deshi777.vip",            logo: "https://ik.imagekit.io/mdbipgb/99selogo/Bd_Vegus.png" },
+        { name: "Deshi_777",      url: "https://kv8.club",                logo: "https://ik.imagekit.io/mdbipgb/99selogo/Deshi_777.png" },
+        { name: "Kv_88",          url: "https://sbj66.vip",               logo: "https://ik.imagekit.io/mdbipgb/99selogo/Kv_88.png" },
+        { name: "Sbj_Bet",        url: "https://bv88visa.com",            logo: "https://ik.imagekit.io/mdbipgb/99selogo/Sbj_Bet.png" },
+        { name: "Betvisa-Bd",     url: "https://mostplaylive.com",        logo: "https://ik.imagekit.io/mdbipgb/99selogo/Betvisa-Bd.png" },
+        { name: "Mostplay_Bd",    url: "https://babu88.gold",             logo: "https://ik.imagekit.io/mdbipgb/99selogo/Mostplay_Bd.png" },
+        { name: "BabuBet_Win",    url: "https://mcw-casino.day",          logo: "https://ik.imagekit.io/mdbipgb/99selogo/BabuBet_Win.png" },
+        { name: "Mcw-Casino",     url: "https://jeetbuzz66.me",           logo: "https://ik.imagekit.io/mdbipgb/99selogo/Mcw-Casino.png" },
+        { name: "Jeet-Buzzbd",    url: "https://www.77hibajee.com/register", logo: "https://ik.imagekit.io/mdbipgb/99selogo/Jeet-Buzzbd.png" },
+        { name: "Hi_Bajee",       url: "http://bd9999.77bdbajee.com",     logo: "https://ik.imagekit.io/mdbipgb/99selogo/Hi_Bajee.png" },
+        { name: "Bd_Bajee",       url: "http://wsapp55.29winbd.com",      logo: "https://ik.imagekit.io/mdbipgb/99selogo/Bd_Bajee.png" },
+        { name: "Winbd_Vip",      url: "http://win888.98hbajee.com",      logo: "https://ik.imagekit.io/mdbipgb/99selogo/Winbd_Vip.png" },
+        { name: "H_Baji-Vip",     url: "https://www.97cbaji.club/register", logo: "https://ik.imagekit.io/mdbipgb/99selogo/H_Baji-Vip.png" },
+        { name: "C_Baji-Vip",     url: "http://vip999.96xbajee.vip",      logo: "https://ik.imagekit.io/mdbipgb/99selogo/C_Baji-Vip.png" },
+        { name: "XBajee-Vip",     url: "http://vip9999.rbajee42.com",     logo: "https://ik.imagekit.io/mdbipgb/99selogo/XBajee-Vip.png" },
+        { name: "RBajee-Vip",     url: "https://www.77viptaka.com/register", logo: "https://ik.imagekit.io/mdbipgb/99selogo/RBajee-Vip.png" },
+        { name: "Vip-Taka",       url: "http://www.fbajee42.com",         logo: "https://ik.imagekit.io/mdbipgb/99selogo/Vip-Taka.png" },
+        { name: "Fbajee_Vip",     url: "http://www.7u777.mobi",           logo: "https://ik.imagekit.io/mdbipgb/99selogo/Fbajee_Vip.png" },
+        { name: "7U777-Bet",      url: "http://www.fb77.wang",            logo: "https://ik.imagekit.io/mdbipgb/99selogo/7U777-Bet.png" },
+        { name: "Fb77Bet-Win",    url: "http://www.fb77.wang/?r=seu3951", logo: "https://ik.imagekit.io/mdbipgb/99selogo/Fb77Bet-Win.png" }
+    ];
+
+    window.onload = function() {
+        /* 1) Fill instantly from the embedded Excel list */
+        populateDropdown(PLATFORMS);
+
+        /* 2) If running inside Apps Script, try refreshing from the live sheet.
+              On failure we simply keep the embedded list. */
+        if (typeof google !== 'undefined' && google.script && google.script.run) {
+            google.script.run
+                .withSuccessHandler(populateDropdown)
+                .withFailureHandler(function() { /* keep embedded list */ })
+                .getPlatformDropdownData();
+        }
+    };
+
+    function populateDropdown(dataList) {
+        const select = document.getElementById('platformSelect');
+        select.innerHTML = '<option value="" disabled selected></option>';
+        dataList.forEach(item => {
+            const opt = document.createElement('option');
+            opt.value = item.name;
+            opt.textContent = item.name;
+            select.appendChild(opt);
+            platformMap[item.name] = item.url;
+            if (item.logo) logoMap[item.name] = item.logo;
+        });
+    }
+
+    /* Reset the Visit Platform link + platform logo preview */
+    function resetPlatformUI() {
+        const logo = document.getElementById('platformLogo');
+        logo.classList.remove('show');
+        logo.removeAttribute('src');
+
+        const link = document.getElementById('urlInput');
+        link.href = '#';
+        link.querySelector('.txt').textContent = '';
+        link.classList.remove('filled');
+        link.classList.add('disabled');
+    }
+
+    function onPlatformChange(selectElement) {
+        const selected = selectElement.value;
+        selectElement.classList.toggle('filled', !!selected);
+
+        /* 1) Platform logo inside the Select Platform field */
+        const logo = document.getElementById('platformLogo');
+        if (selected && logoMap[selected]) {
+            logo.src = logoMap[selected];
+            logo.classList.add('show');
+        } else {
+            logo.classList.remove('show');
+            logo.removeAttribute('src');
+        }
+
+        /* 2) Visit Platform becomes a clickable link to the platform URL */
+        const url = platformMap[selected] || '';
+        const link = document.getElementById('urlInput');
+        if (url) {
+            link.href = url;
+            link.querySelector('.txt').textContent = url;
+            link.classList.remove('disabled');
+            link.classList.add('filled');
+        } else {
+            link.href = '#';
+            link.querySelector('.txt').textContent = '';
+            link.classList.remove('filled');
+            link.classList.add('disabled');
+        }
+    }
+
+    function handleFormSubmit(e) {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span>Saving...</span>';
+
+        const formData = {
+            platforms: document.getElementById('platformSelect').value,
+            url: document.getElementById('urlInput').href,
+            username: document.getElementById('usernameInput').value,
+            motherAccount: document.getElementById('motherAccountInput').value,
+            notes: document.getElementById('notesInput').value
+        };
+
+        google.script.run
+            .withSuccessHandler(function() {
+                document.getElementById('alertBox').innerHTML = '<div class="alert ok"><i class="fas fa-check-circle"></i> Entry Saved Successfully!</div>';
+                document.getElementById('entryForm').reset();
+                document.getElementById('platformSelect').classList.remove('filled');
+                resetPlatformUI(); /* hide platform logo + disable Visit link */
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-check-circle"></i><span>Save Entry</span>';
+                setTimeout(() => document.getElementById('alertBox').innerHTML = '', 3500);
+            })
+            .withFailureHandler(function() {
+                document.getElementById('alertBox').innerHTML = '<div class="alert err"><i class="fas fa-exclamation-circle"></i> Error saving entry.</div>';
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-check-circle"></i><span>Save Entry</span>';
+            })
+            .addDataToSheet(formData);
+    }
+</script>
+</body>
+</html>
